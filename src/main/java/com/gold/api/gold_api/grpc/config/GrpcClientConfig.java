@@ -1,9 +1,11 @@
 package com.gold.api.gold_api.grpc.config;
 
 import com.gold.api.gold_api.grpc.AuthServiceCaller;
+import com.gold.api.gold_api.grpc.JwtServiceCaller;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,8 +25,14 @@ public class GrpcClientConfig {
     }
 
     @Bean
-    public AuthServiceCaller helloServiceCaller(ManagedChannel managedChannel) {
-        log.info("Creating HelloServiceCaller bean");
+    public AuthServiceCaller authServiceCaller(ManagedChannel managedChannel) {
+        log.info("Creating AuthServiceCaller bean");
         return new AuthServiceCaller(managedChannel);
+    }
+
+    @Bean
+    public JwtServiceCaller JwtServiceCaller(ManagedChannel managedChannel) {
+        log.info("Creating JwtServiceCaller bean");
+        return new JwtServiceCaller(managedChannel);
     }
 }

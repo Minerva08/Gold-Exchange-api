@@ -7,6 +7,7 @@ import com.gold.api.gold_api.user.dto.LoginRequest;
 import com.gold.api.gold_api.user.dto.LoginResponse;
 import com.gold.api.gold_api.user.service.UserService;
 
+import jakarta.servlet.ServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,10 +32,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<CommonResponse<LoginResponse>> login(@RequestBody LoginRequest loginInfo){
-        LoginResponse loginResponse = userService.userLogin(loginInfo);
-        CommonResponse<LoginResponse> res = CommonResponse.ok("로그인 성공",loginResponse);
-        return new ResponseEntity<>(res, HttpStatus.OK);
+    public ResponseEntity<?> login(ServletResponse response,  @RequestBody LoginRequest loginInfo){
+//        CommonResponse<LoginResponse> res = CommonResponse.ok("로그인 성공",response.get);
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 
