@@ -36,10 +36,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.util.StreamUtils;
 
 @Slf4j
 public class LoginFilter extends AbstractAuthenticationProcessingFilter {
+
+    private static final RequestMatcher COMPOSITE_MATCHER = new OrRequestMatcher(
+        new AntPathRequestMatcher("/login", HttpMethod.POST.name())
+    );
 
     private static final String CONTENT_TYPE = MediaType.APPLICATION_JSON_VALUE; // JSON 타입의 데이터로 오는 로그인 요청만 처리
     private final ObjectMapper objectMapper;
@@ -48,7 +54,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
 
     public LoginFilter(ObjectMapper objectMapper, AuthenticationManager authenticationManager,
         JwtServiceCaller jwtServiceCaller) {
-        super(new AntPathRequestMatcher("/login", HttpMethod.POST.name())); // 위에서 설정한 "login" + POST로 온 요청을 처리하기 위해 설정
+        super(COMPOSITE_MATCHER); // 위에서 설정한 "login" + POST로 온 요청을 처리하기 위해 설정
         this.objectMapper = objectMapper;
         this.authenticationManager = authenticationManager;
         this.jwtServiceCaller = jwtServiceCaller;

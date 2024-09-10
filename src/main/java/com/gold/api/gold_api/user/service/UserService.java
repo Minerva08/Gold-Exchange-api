@@ -11,7 +11,6 @@ public interface UserService {
 
     JoinResponse userJoin(JoinRequest joinInfo);
 
-    JwtResponse checkUserAuth(String refreshToken);
 
-    JwtResponse reIssueToken(String expiredToken);
+    JwtResponse reIssueToken(String refreshToken, String userId);
 }

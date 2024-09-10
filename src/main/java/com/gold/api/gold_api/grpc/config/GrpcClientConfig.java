@@ -16,7 +16,7 @@ public class GrpcClientConfig {
     @Bean
     public ManagedChannel managedChannel() {
         String host = "127.0.0.1";
-        int port = 50052;
+        int port = 50051;
 
 
         return ManagedChannelBuilder.forAddress(host, port)

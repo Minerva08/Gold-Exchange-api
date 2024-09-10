@@ -5,11 +5,6 @@ import com.gold.api.gold_api.global.exception.CustomException;
 import com.gold.proto.AuthServiceGrpc;
 import com.gold.proto.JoinRequestDto;
 import com.gold.proto.JoinResponseDto;
-import com.gold.proto.JwtTokenReIssueResponseDto;
-import com.gold.proto.LoginRequestDto;
-import com.gold.proto.LoginResponseDto;
-import com.gold.proto.RefreshTokenResponseDto;
-import com.gold.proto.RefreshTokenRequestDto;
 
 import io.grpc.ManagedChannel;
 import io.grpc.StatusRuntimeException;
@@ -46,12 +41,4 @@ public class AuthServiceCaller {
 
     }
 
-
-    public RefreshTokenResponseDto sendRefreshToken(RefreshTokenRequestDto refreshTokenGrpc) {
-        return blockingStub.getUserAuthByRefreshToken(refreshTokenGrpc);
-    }
-
-    public JwtTokenReIssueResponseDto expireRefreshToken(RefreshTokenRequestDto expiredJwtGrpc) {
-        return blockingStub.getUserAuthReIssue(expiredJwtGrpc);
-    }
 }
