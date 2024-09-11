@@ -61,7 +61,6 @@ public class UserServiceImpl implements UserService{
 
         User joinUserInfo = User.builder()
             .userId(userInfo.getUserId())
-            .address(userInfo.getUserId())
             .password(userInfo.getEncryptedPw())
             .build();
 

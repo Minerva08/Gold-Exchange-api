@@ -52,7 +52,8 @@ public class SecurityConfig {
                     new AntPathRequestMatcher("/reissue"),
                     new AntPathRequestMatcher("/v3/api-docs/**"),
                     new AntPathRequestMatcher("/swagger-ui/**"),
-                    new AntPathRequestMatcher("/reissue-token")
+                    new AntPathRequestMatcher("/reissue-token"),
+                    new AntPathRequestMatcher("/error")
                 ).permitAll()
                 .anyRequest().authenticated()
             )
@@ -84,6 +85,9 @@ public class SecurityConfig {
     private final AuthenticationEntryPoint authenticationEntryPoint =
         (request, response, authException) -> {
             log.error("인증 실패: {}", authException.getMessage());
+            log.error("Authentication failed: {}", authException.getClass().getSimpleName());
+            log.error("Request URI: {}", request.getRequestURI());
+            log.error("Error Message: {}", authException.getMessage());
             ErrorCode errorCode = ErrorCode.AUTHENTICATION_FAILED;
             if (authException instanceof JwtAuthenticationException) {
                 errorCode = ((JwtAuthenticationException) authException).getErrorCode();

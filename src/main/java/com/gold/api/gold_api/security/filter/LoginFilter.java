@@ -96,7 +96,6 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         CustomUserDetails customUserDetails = (CustomUserDetails) authResult.getPrincipal();
         String userId = customUserDetails.getUserId();
         String password = customUserDetails.getPassword();
-        String address = customUserDetails.getAddress();
 
         try {
             //Grpc 요청

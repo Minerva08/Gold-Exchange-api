@@ -29,7 +29,10 @@ public enum ErrorCode {
     PASSWORD_LACKS_VARIETY(BAD_REQUEST, "숫자, 문자, 특수문자 중 2가지 이상을 포함해야 합니다."),
     PASSWORD_SIMILAR_TO_PERSONAL_INFO(BAD_REQUEST, "비밀번호는 다른 개인 정보와 유사할 수 없습니다."),
     PASSWORD_SAME_AS_PREVIOUS(BAD_REQUEST, "이전 비밀번호와 동일하게 설정할 수 없습니다."),
-    PASSWORD_HAS_SEQUENTIAL_CHARS(BAD_REQUEST, "3회 이상 연속되는 문자는 사용할 수 없습니다.");
+    PASSWORD_HAS_SEQUENTIAL_CHARS(BAD_REQUEST, "3회 이상 연속되는 문자는 사용할 수 없습니다."),
+
+    // 상품 관련
+    PRODUCT_NOT_FOUND(BAD_REQUEST, "존재하지 않는 상품 입니다");
 
     private final HttpStatus httpStatus;
     private final String message;
