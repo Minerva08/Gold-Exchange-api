@@ -10,12 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Getter
-public class PurchaseOrderResponse {
+public class UpdateOrderResponse {
     private String orderNum;
-    private String userId;
-    private String productCode;
-    private String productName;
-    private float purchaseCnt;
-    private String dealStatus;
+    private DealStatus dealStatus;
 
 }

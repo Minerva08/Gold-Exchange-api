@@ -9,6 +9,7 @@ import com.gold.api.gold_api.invoice.entity.Invoice;
 import com.gold.api.gold_api.log.BusinessLogRepository;
 import com.gold.api.gold_api.order.dto.PurchaseOrderRequest;
 import com.gold.api.gold_api.order.dto.PurchaseOrderResponse;
+import com.gold.api.gold_api.order.dto.UpdateOrderResponse;
 import com.gold.api.gold_api.order.repository.OrderRepository;
 import com.gold.api.gold_api.product.ProductRepository;
 import com.gold.api.gold_api.product.entity.Product;
@@ -46,11 +47,25 @@ public class OrderServiceImpl implements OrderService{
             .productCode(request.getOrderInfo().getProductCode())
             .productName(ProductCode.fromCode(request.getOrderInfo().getProductCode()).getName())
             .purchaseCnt(registInvoice.getProductCnt())
-            .dealStatus(registInvoice.getStatus())
+            .dealStatus(registInvoice.getStatus().getCode())
             .build();
 
         return purchaseOrder;
     }
+
+    @Override
+    public UpdateOrderResponse updateOrderStatus(String ordernum, String modeStatus,
+        String userId) {
+
+        LocalDateTime update = LocalDateTime.now();
+        orderRepository.updateOrderStatus(DealStatus.fromCode(modeStatus),ordernum,update);
+
+        return UpdateOrderResponse.builder()
+            .dealStatus(DealStatus.fromCode(modeStatus))
+            .orderNum(ordernum)
+            .build();
+    }
+
 
     private Invoice convertInvoiceEntity(String orderType,String userId, PurchaseOrderRequest purchaseInfo){
 
