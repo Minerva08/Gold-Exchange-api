@@ -60,11 +60,13 @@ public class JwtFilter extends OncePerRequestFilter {
 
             //토큰에서 userId
             String userId = jwtUtil.getUserId(token);
+            String address = jwtUtil.getAddress(token);
 
             //userEntity를 생성하여 값 set
             User user = User.builder()
                 .userId(userId)
                 .password("temp")
+                .address(address)
                 .build();
 
             //UserDetails에 회원 정보 객체 담기

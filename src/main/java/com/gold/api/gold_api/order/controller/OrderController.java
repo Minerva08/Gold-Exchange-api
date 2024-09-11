@@ -39,7 +39,7 @@ public class OrderController {
         @AuthenticationPrincipal CustomUserDetails customUserDetails
         ){
 
-        PurchaseOrderResponse response = orderService.registerPurchase(orderType,request, customUserDetails.getUserId());
+        PurchaseOrderResponse response = orderService.registerPurchase(orderType,request, customUserDetails.getUserId(), customUserDetails.getAddress());
 
         return ResponseEntity.ok(response);
     }

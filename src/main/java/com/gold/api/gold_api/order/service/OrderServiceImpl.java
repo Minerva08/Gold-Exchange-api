@@ -34,7 +34,11 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     @Transactional
-    public PurchaseOrderResponse registerPurchase(String orderType,PurchaseOrderRequest request, String userId) {
+    public PurchaseOrderResponse registerPurchase(String orderType,PurchaseOrderRequest request, String userId,String address) {
+
+        if(request.getAddress()==null){
+            request.setAddress(address);
+        }
 
         Invoice mappedInvoice = convertInvoiceEntity(orderType,userId, request);
         mappedInvoice.addInvoiceStep();

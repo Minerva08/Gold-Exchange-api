@@ -7,7 +7,7 @@ import com.gold.api.gold_api.order.dto.UpdateOrderResponse;
 
 public interface OrderService {
 
-    PurchaseOrderResponse registerPurchase(String orderType, PurchaseOrderRequest request, String userId);
+    PurchaseOrderResponse registerPurchase(String orderType, PurchaseOrderRequest request, String userId, String address);
 
     UpdateOrderResponse updateOrderStatus(String ordernum,String modeStatus, String userId);
 }

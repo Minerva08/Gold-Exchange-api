@@ -31,6 +31,11 @@ public class JwtUtill {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("category", String.class);
     }
 
+    public String getAddress(String token) {
+
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("address", String.class);
+    }
+
 
     public Boolean isExpired(String token) {
 
