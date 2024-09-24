@@ -37,11 +37,14 @@
 <br/>
 
 ## API 명세
-1. 로그인 /api/login **POST**
-2. 회원가입 /api/join **POST**
-3. 토큰 재발급 /api/reissue-jwt **GET**
-4. 상품 주문(판매/구매) 요청 /api/orders/{orderType} **POST**
-5. 상품 거래 상태 변경 요청 /api/orders/modStatus **PATCH**
+| **분류** | **API 명칭** | **HTTP 메서드** | **엔드포인트** | **설명** |
+| --- | --- | --- | --- | --- |
+| **인증&인가** | 사용자 회원가입 | POST | /api/join | 사용자는 계정명, 비밀번호로 회원가입합니다. |
+|  | 사용자 로그인 | POST | /api/login | 사용자는 계정명, 비밀번호로 로그인합니다. 로그인 시 쿠키, 헤더에 Refresh Token, Access Token이 발급됩니다. |
+|  | 토큰 재발급 | GET | /api/reissue-jwt | 유효한 Refresh Token으로 Access Token, Refresh Token을 재발급합니다. |
+| **상품 주문** | 상품 주문(판매/구매) 요청 | POST | /api/orders/{orderType} | 사용자가 상품의 판매 또는 구매를 요청합니다. |
+|  | 상품 거래 상태 변경 요청 | PATCH | /api/orders/modStatus | 기존 주문의 거래 상태를 변경합니다. |
+
 
 <br/>
 
